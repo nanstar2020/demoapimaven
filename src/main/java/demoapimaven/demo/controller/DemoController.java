@@ -10,12 +10,12 @@ public class DemoController {
 		return "Hello to Demo App";
 	}
 	
-    @RequestMapping("/getInfo")
+    @RequestMapping("/API/getInfo")
     public String getInfo() {
         return "Demo API Version 1.0";
     }
 
-    @RequestMapping("/testParams")
+    @RequestMapping("/API/testParams")
     public String testParams() {
         return "Test Params";
     }
