@@ -9,8 +9,8 @@ RUN \
  &&   yum remove -y  --setopt=tsflags=nodocs $INSTALL_PKGS $REMOVE_PKGS \
  &&   yum clean all
 
- WORKDIR ${HOME}
- CMD ["scl", "enable", "rh-ruby25", "bash"]
+WORKDIR ${HOME}
+CMD ["scl", "enable", "rh-ruby25", "--", "sh", "run.sh"]
 
 LABEL io.k8s.display-name=Fluentd-CloudWatch
 
