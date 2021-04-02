@@ -11,7 +11,8 @@ RUN \
 
 WORKDIR ${HOME}
 #CMD ["scl", "enable", "rh-ruby25", "--", "sh", "run.sh"]
-CMD ["tail", "-f", "/var/log/yum.log" ]
+RUN echo "TEST" > /tmp/test.log
+CMD ["tail", "-f", "/tmp/test.log" ]
 
 LABEL io.k8s.display-name=Fluentd-CloudWatch
 
