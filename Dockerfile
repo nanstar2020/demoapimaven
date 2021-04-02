@@ -10,9 +10,7 @@ RUN \
  &&   yum clean all
 
 WORKDIR ${HOME}
-#CMD ["scl", "enable", "rh-ruby25", "--", "sh", "run.sh"]
-RUN echo "TEST" > /tmp/test.log
-CMD ["tail", "-f", "/tmp/test.log" ]
+CMD ["scl", "enable", "rh-ruby25", "--", "bash"]
 
 LABEL io.k8s.display-name=Fluentd-CloudWatch
 
