@@ -5,6 +5,7 @@ RUN yum install -y gcc-c++
 RUN yum install -y make
 RUN yum install -y redhat-rpm-config
 RUN gem install fluent-plugin-cloudwatch-logs
+RUN gem install ca-certicates
 
 CMD ["fluentd"]
 
