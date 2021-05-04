@@ -1,14 +1,16 @@
-From registry.redhat.io/openshift-logging/fluentd-rhel8
+From registry.redhat.io/openshift4/ose-logging-fluentd:v4.6
 
-RUN yum install -y gcc-c++
-RUN yum install -y make
-RUN yum install -y redhat-rpm-config
-RUN gem install fluent-plugin-cloudwatch-logs
-RUN yum install -y ca-certificates
+RUN \
+      INSTALL_PKGS="rh-ruby25-ruby-devel  rh-ruby25-rubygems-devel  gcc-c++  make" \
+ &&   REMOVE_PKGS="cpp gcc glibc-devel glibc-headers libgomp libmpc libstdc++-devel kernel-headers mpfr" \
+ &&   yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS \
+ &&   rpm -V $INSTALL_PKGS \
+ &&   scl enable rh-ruby25 "/opt/rh/rh-ruby25/root/usr/bin/gem install fluent-plugin-cloudwatch-logs --verbose" \
+ &&   yum remove -y  --setopt=tsflags=nodocs $INSTALL_PKGS $REMOVE_PKGS \
+ &&   yum clean all
 
-#CMD ["fluentd"]
-
-
+WORKDIR ${HOME}
+CMD ["scl", "enable", "rh-ruby25", "--", "bash"]
 
 LABEL io.k8s.display-name=Fluentd-CloudWatch
 
